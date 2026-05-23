@@ -3,56 +3,273 @@
     <head>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <title>P10-Inspired Landing Page Reveal Animation</title>
-        <link rel="stylesheet" href="/src/style.css"/>
-
+        <title>Sagnik Pramanik, Portfolio</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@400..800&display=swap"/>
+        <link rel="stylesheet" href="./style.css"/>
     </head>
     <body>
+
+        <!-- PRELOADER -->
         <div class="preloader">
             <div class="intro-title">
                 <h1>Sagnik Pramanik</h1>
             </div>
             <div class="outro-title">
-                <h1>IT</h1>
+                <h1>P</h1>
             </div>
         </div>
 
+        <!-- SPLIT OVERLAY -->
         <div class="split-overlay">
             <div class="intro-title">
                 <h1>Sagnik Pramanik</h1>
             </div>
             <div class="outro-title">
-                <h1>IT</h1>
+                <h1>P</h1>
             </div>
         </div>
 
+        <!-- TAGS OVERLAY -->
         <div class="tags-overlay">
-            <div class="tag tag-1"><p>Negative Space</p></div>  <!-- Fix 2 & 3: removed extra </div>, added tag-1 -->
-            <div class="tag tag-2"><p>Form & Void</p></div>     <!-- Fix 2 & 3: removed extra </div>, added tag-2 -->
-            <div class="tag tag-3"><p>Light Studies</p></div>   <!-- Fix 3: added tag-3 -->
+            <div class="tag tag-1"><p>AI & CV Research</p></div>
+            <div class="tag tag-2"><p>Creative Developer</p></div>
+            <div class="tag tag-3"><p>KIIT</p></div>
         </div>
 
-        <!-- Fix 1: nav, hero-img, card, and footer moved inside .container -->
+        <!-- MAIN CONTAINER -->
         <div class="container">
+
             <nav>
-                <p id="logo">N10</p>
-                <p>Menu</p>
+                <p id="logo">SP</p>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#work">Work</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                
             </nav>
 
-            <div class="hero-img">
-                <img src="" alt=""/>  <!-- Fix 4: added missing closing > -->
-            </div>
+            <!-- HERO -->
+            <section class="hero" id="hero">
+                <div class="card">
+                    <h1>Sagnik</h1>
+                </div>
+                <div class="hero-sub">
+                    <p>Electronics & CS · Builder · Researcher</p>
+                    <p class="scroll-hint">Scroll ↓</p>
+                </div>
+            </section>
 
-            <div class="card">
-                <h1>Nullspace</h1>
-            </div>
+            <!-- ABOUT -->
+            <section class="about" id="about">
+                <div class="about-label"><p>About</p></div>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>I build things at the intersection of AI, code, and creative media.</h2>
+                        <p>B.Tech Electronics & CS student at KIIT with an 8.55 CGPA. I've engineered speech datasets at Samsung R&D, built interactive exhibition systems with gesture recognition at Gleepic VFX, and developed full-stack AI tools that fight misinformation.</p>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat">
+                            <span class="stat-num">8.55</span>
+                            <span class="stat-label">CGPA</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">4</span>
+                            <span class="stat-label">Internships</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num"> 5+ </span>
+                            <span class="stat-label">Awards</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS -->
+            <section class="projects" id="work">
+                <div class="section-label"><p>Selected Projects</p></div>
+                <div class="projects-grid">
+
+                    <div class="project-card">
+                        <div class="project-num">01</div>
+                        <div class="project-info">
+                            <h3>noCap</h3>
+                            <p class="project-tags">LLM · Computer Vision · Full-Stack</p>
+                            <p class="project-desc">AI-powered misinformation and deepfake detector. Built with Google Gemini API. Deployed on Vercel (frontend) and Railway (backend).</p>
+                        </div>
+                        <div class="project-links">
+                            
+                            <a href="https://github.com/Pramzie/nocap" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-num">02</div>
+                        <div class="project-info">
+                            <h3>Air Piano</h3>
+                            <p class="project-tags">CV · HCI · Music Tech</p>
+                            <p class="project-desc">Virtual piano via finger gesture recognition using MediaPipe, OpenCV and Pygame MIDI with sustain control and real-time visual feedback.</p>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Pramzie/Air-Piano" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-num">03</div>
+                        <div class="project-info">
+                            <h3>Sargam Visualizer</h3>
+                            <p class="project-tags">Python · Matplotlib · PyDub</p>
+                            <p class="project-desc">Indian Classical note visualizer that animates Sargam notes with synchronized lyrics and pitch-driven visuals.</p>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/Pramzie/sargam-visualizer" class="project-link">GitHub →</a>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- EXPERIENCE -->
+            <section class="experience" id="experience">
+                <div class="section-label"><p>Experience</p></div>
+                <div class="experience-list">
+
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div>
+                                <h3>Samsung PRISM Program</h3>
+                                <p class="exp-role">Research Intern · Samsung R&D, Bangalore</p>
+                            </div>
+                            <p class="exp-date">May 2025 – Feb 2026</p>
+                        </div>
+                        <p class="exp-desc">Engineered a production-grade Odia speech dataset of 10,000 annotated recordings across 765 speakers. Designed controlled replay attack simulations generating 2,000 spoofed audio samples by varying replay distance, playback device, and room acoustics.</p>
+                    </div>
+
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div>
+                                <h3>Gleepic VFX Studios</h3>
+                                <p class="exp-role">Freelance Interactive Media Developer · Kolkata</p>
+                            </div>
+                            <p class="exp-date">Jun 2025 – Aug 2025</p>
+                        </div>
+                        <p class="exp-desc">Built an interactive exhibition system in TouchDesigner + Python with gesture triggers, QR-based selfies, and projection mapping. Trained and deployed ML models for gesture recognition integrated with computer vision installations.</p>
+                    </div>
+
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <div>
+                                <h3>Antbox Technologies</h3>
+                                <p class="exp-role">GTM Growth Executive · Bhubaneswar</p>
+                            </div>
+                            <p class="exp-date">Mar 2026 – Apr 2026</p>
+                        </div>
+                        <p class="exp-desc">Generated MQLs through targeted outreach campaigns, contributing to the GTM pipeline. Assisted in executing growth strategies, market research, and identifying new business opportunities for early-stage customer acquisition.</p>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- SKILLS -->
+            <section class="skills" id="skills">
+                <div class="section-label"><p>Skills</p></div>
+                <div class="skills-content">
+                    <div class="skill-group">
+                        <p class="skill-category">Languages</p>
+                        <div class="skill-pills">
+                            <span>Python</span>
+                            <span>JavaScript</span>
+                            <span>SQL</span>
+                            <span>Java</span>
+                            <span>Bash</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <p class="skill-category">Tools & Libraries</p>
+                        <div class="skill-pills">
+                            <span>OpenCV</span>
+                            <span>MediaPipe</span>
+                            <span>TouchDesigner</span>
+                            <span>Hugging Face</span>
+                            <span>Matplotlib</span>
+                            <span>Pygame</span>
+                        </div>
+                    </div>
+                    <div class="skill-group">
+                        <p class="skill-category">Platforms</p>
+                        <div class="skill-pills">
+                            <span>Linux</span>
+                            <span>Arduino</span>
+                            <span>Raspberry Pi</span>
+                            <span>MS Excel</span>
+                            <span>Windows</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AWARDS -->
+            <section class="awards" id="awards">
+                <div class="section-label"><p>Honors & Awards</p></div>
+                <div class="awards-list">
+                    <div class="award-item">
+                        <span class="award-prize">1st</span>
+                        <div>
+                            <p class="award-name">UEM-CON'24</p>
+                            <p class="award-org">UEM Kolkata · Aug 2024</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-prize">2nd</span>
+                        <div>
+                            <p class="award-name">KIIT International MUN'24 (UNHLPF)</p>
+                            <p class="award-org">KIIT · Sep 2024</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-prize">3rd</span>
+                        <div>
+                            <p class="award-name">Ideathon, XIM University</p>
+                            <p class="award-org">XIM University · Sep 2025</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-prize">3rd</span>
+                        <div>
+                            <p class="award-name">Yuvamanthan</p>
+                            <p class="award-org">IIT BBS · Nov 2024</p>
+                        </div>
+                    </div>
+                    <div class="award-item">
+                        <span class="award-prize">AIR 26</span>
+                        <div>
+                            <p class="award-name">PUBDET '23</p>
+                            <p class="award-org">All India · Jun 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONTACT -->
+            <section class="contact" id="contact">
+                <h2 class="contact-heading">Let's build<br/>something.</h2>
+                <div class="contact-links">
+                    <a href="mailto:psagnik990@gmail.com">psagnik990@gmail.com</a>
+                    <a href="https://www.linkedin.com/in/sagnik-pramanik-559569224/" target="_blank">LinkedIn</a>
+                    <a href="https://github.com/Pramzie" target="_blank">GitHub</a>
+                </div>
+            </section>
 
             <footer>
-                <p>Scroll Down</p>
-                <p>Made by Pramzie</p>
+                <p>Sagnik Pramanik © 2026</p>
+                <p>Built with Love</p>
             </footer>
-        </div>
 
-        <script type="module" src="/src/main.js"></script>
+        </div>
+        <script type="module" src="./main.js"></script>
     </body>
 </html>

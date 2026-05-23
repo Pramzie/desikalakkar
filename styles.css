@@ -1,6 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@400..800&display=swap");
 
-/* Fix 1: added missing * universal selector */
+/* ============================================================
+   RESET & BASE
+============================================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -9,6 +12,14 @@
 
 body {
     font-family: "DM Sans", sans-serif;
+    background-color: #0a0a0a;
+    color: #efefef;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
 img {
@@ -29,6 +40,10 @@ p {
     font-size: 13px;
     font-weight: 500;
 }
+
+/* ============================================================
+   PRELOADER & OVERLAY — existing styles (unchanged)
+============================================================ */
 
 .preloader,
 .split-overlay,
@@ -56,7 +71,7 @@ p {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); /* Fix 2: curly braces → parentheses */
+    transform: translate(-50%, -50%);
     width: 100%;
     text-align: center;
 }
@@ -75,55 +90,80 @@ p {
     overflow: hidden;
 }
 
-.tag-1 {
-    top: 15%;
-    left: 15%;
-}
+.tag-1 { top: 15%; left: 15%; }
+.tag-2 { bottom: 15%; left: 25%; }
+.tag-3 { bottom: 30%; right: 15%; }
 
-.tag-2 {
-    bottom: 15%;
-    left: 25%;
-}
-
-.tag-3 {
-    bottom: 30%;
-    right: 15%;
-}
+/* ============================================================
+   CONTAINER — existing + extended
+============================================================ */
 
 .container {
     position: relative;
     width: 100%;
-    height: 100%;
     min-height: 100svh;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
     clip-path: polygon(0 48%, 0 48%, 0 52%, 0 52%);
     z-index: 2;
 }
 
-.container .hero-img {
-    position: absolute; /* Fix 3: aboslute → absolute */
-    width: 100%;
-    height: 100%;
-}
+/* ============================================================
+   NAV
+============================================================ */
 
-nav, footer {
-    position: relative;
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100vw;
     padding: 2em;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #fff;
-    z-index: 2;
+    z-index: 10;
+    mix-blend-mode: difference;
 }
 
 nav p#logo {
-    font-weight: 600;
+    font-family: "Syne", sans-serif;
+    font-weight: 800;
     font-size: 20px;
+    letter-spacing: 0.05em;
 }
 
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+}
+
+.nav-links a {
+    font-size: 11px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #fff;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover {
+    opacity: 1;
+}
+
+/* ============================================================
+   HERO
+============================================================ */
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Card — existing + scoped to hero */
 .card {
     position: absolute;
     top: 50%;
@@ -142,15 +182,47 @@ nav p#logo {
     text-align: center;
     width: 100%;
     font-size: 3rem;
+    color: #0a0a0a;
 }
 
-/* Fix 4: .card.char span → .card .char span (added missing descendant space) */
 .card .char span {
     position: relative;
     display: inline-block;
     transform: translateY(100%);
     will-change: transform;
 }
+
+.hero-sub {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    opacity: 0;
+}
+
+.hero-sub p {
+    color: #444;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+}
+
+.scroll-hint {
+    color: #333 !important;
+    animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(4px); }
+}
+
+/* ============================================================
+   SHARED CHAR STYLES — existing (unchanged)
+============================================================ */
 
 .intro-title .char,
 .outro-title .char,
@@ -165,7 +237,9 @@ nav p#logo {
     margin-top: 0.75rem;
 }
 
-.intro-title .char span, .outro-title .char span, .tag .word {
+.intro-title .char span,
+.outro-title .char span,
+.tag .word {
     position: relative;
     display: inline-block;
     transform: translateY(-100%);
@@ -176,26 +250,532 @@ nav p#logo {
     transform-origin: top left;
 }
 
-/* Fix 5: max-width: 100px → 1000px (matches JS isMobile threshold) */
+/* ============================================================
+   SECTIONS — shared
+============================================================ */
+
+section {
+    padding: 8rem 5rem;
+    position: relative;
+}
+
+.section-label,
+.about-label {
+    margin-bottom: 4rem;
+    overflow: hidden;
+}
+
+.section-label p,
+.about-label p {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: #333;
+    text-transform: uppercase;
+}
+
+/* ============================================================
+   ABOUT
+============================================================ */
+
+.about {
+    background: #0d0d0d;
+    border-top: 1px solid #111;
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 6rem;
+    align-items: start;
+}
+
+.about-text h2 {
+    font-family: "Syne", sans-serif;
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    font-weight: 700;
+    color: #efefef;
+    line-height: 1.3;
+    margin-bottom: 2rem;
+    text-transform: none;
+}
+
+.about-text > p {
+    color: #666;
+    text-transform: none;
+    font-size: 14px;
+    line-height: 1.9;
+    font-weight: 400;
+    letter-spacing: 0;
+}
+
+.about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #1a1a1a;
+    padding: 1.5rem 0;
+}
+
+.stat:last-child {
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.stat-num {
+    font-family: "Syne", sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #e8ff5a;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+.stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #333;
+}
+
+/* ============================================================
+   PROJECTS
+============================================================ */
+
+.projects {
+    background: #0a0a0a;
+}
+
+.projects-grid {
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card {
+    display: grid;
+    grid-template-columns: 5rem 1fr auto;
+    align-items: start;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid #141414;
+    cursor: pointer;
+    transition: border-color 0.4s ease;
+}
+
+.project-card:last-child {
+    border-bottom: 1px solid #141414;
+}
+
+.project-card:hover {
+    border-top-color: #2a2a2a;
+}
+
+.project-card:hover .project-info h3 {
+    color: #e8ff5a;
+}
+
+.project-num {
+    font-size: 10px;
+    color: #2a2a2a;
+    font-weight: 600;
+    padding-top: 0.4rem;
+    letter-spacing: 0.1em;
+}
+
+.project-info h3 {
+    font-family: "Syne", sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #efefef;
+    text-transform: none;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+    line-height: 1;
+}
+
+.project-tags {
+    color: #e8ff5a;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.project-desc {
+    color: #555;
+    font-size: 13px;
+    line-height: 1.8;
+    text-transform: none;
+    font-weight: 400;
+    max-width: 480px;
+    letter-spacing: 0;
+}
+
+.project-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+    padding-top: 0.4rem;
+}
+
+.project-link {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.project-link:hover {
+    color: #e8ff5a;
+}
+
+/* ============================================================
+   EXPERIENCE
+============================================================ */
+
+.experience {
+    background: #0d0d0d;
+    border-top: 1px solid #111;
+}
+
+.experience-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.exp-item {
+    padding: 2.5rem 0;
+    border-top: 1px solid #141414;
+}
+
+.exp-item:last-child {
+    border-bottom: 1px solid #141414;
+}
+
+.exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 2rem;
+}
+
+.exp-header h3 {
+    font-family: "Syne", sans-serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #efefef;
+    text-transform: none;
+    margin-bottom: 0.35rem;
+    line-height: 1;
+}
+
+.exp-role {
+    color: #444;
+    font-size: 11px;
+    text-transform: none;
+    letter-spacing: 0.05em;
+    font-weight: 400;
+}
+
+.exp-date {
+    color: #2a2a2a;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    white-space: nowrap;
+    padding-top: 0.25rem;
+    flex-shrink: 0;
+}
+
+.exp-desc {
+    color: #555;
+    font-size: 13px;
+    line-height: 1.8;
+    text-transform: none;
+    font-weight: 400;
+    max-width: 600px;
+    letter-spacing: 0;
+}
+
+/* ============================================================
+   SKILLS
+============================================================ */
+
+.skills {
+    background: #0a0a0a;
+}
+
+.skills-content {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.skill-category {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #2a2a2a;
+    margin-bottom: 1rem;
+}
+
+.skill-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skill-pills span {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    border: 1px solid #1a1a1a;
+    font-size: 11px;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.skill-pills span:hover {
+    border-color: #e8ff5a;
+    color: #e8ff5a;
+}
+
+/* ============================================================
+   AWARDS
+============================================================ */
+
+.awards {
+    background: #0d0d0d;
+    border-top: 1px solid #111;
+}
+
+.awards-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.award-item {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid #141414;
+    transition: padding-left 0.3s ease;
+}
+
+.award-item:last-child {
+    border-bottom: 1px solid #141414;
+}
+
+.award-item:hover {
+    padding-left: 1rem;
+}
+
+.award-prize {
+    font-family: "Syne", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #e8ff5a;
+    min-width: 5rem;
+    line-height: 1;
+}
+
+.award-name {
+    color: #efefef;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: none;
+    margin-bottom: 0.35rem;
+    letter-spacing: 0;
+}
+
+.award-org {
+    color: #333;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+}
+
+/* ============================================================
+   CONTACT
+============================================================ */
+
+.contact {
+    padding: 10rem 5rem;
+    min-height: 70svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #0a0a0a;
+    border-top: 1px solid #111;
+}
+
+.contact-heading {
+    font-family: "Syne", sans-serif;
+    font-size: clamp(3.5rem, 8vw, 9rem);
+    font-weight: 800;
+    color: #efefef;
+    line-height: 0.95;
+    text-transform: uppercase;
+    margin-bottom: 3.5rem;
+}
+
+.contact-links {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+}
+
+.contact-links a {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #333;
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 3px;
+}
+
+.contact-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #e8ff5a;
+    transition: width 0.4s ease;
+}
+
+.contact-links a:hover {
+    color: #e8ff5a;
+}
+
+.contact-links a:hover::after {
+    width: 100%;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+footer {
+    position: relative;
+    width: 100%;
+    padding: 2em 5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #222;
+    border-top: 1px solid #111;
+    background: #050505;
+}
+
+footer p {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+/* ============================================================
+   SCROLL ANIMATION — INITIAL STATES
+   (GSAP sets these; CSS just ensures starting state)
+============================================================ */
+
+.about-text,
+.about-stats {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.section-label p,
+.about-label p {
+    transform: translateY(100%);
+}
+
+.project-card {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.exp-item {
+    opacity: 0;
+    transform: translateY(25px);
+}
+
+.skill-pills span {
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.award-item {
+    opacity: 0;
+    transform: translateX(-25px);
+}
+
+.contact-heading {
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.contact-links a {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.hero-sub {
+    opacity: 0;
+}
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
 @media (max-width: 1000px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-
-    .outro-title {
-        left: calc(50% + 4rem);
-    }
-
-    .card {
-        width: 75%;
-    }
-
-    .card h1 {
-        font-size: 2.5rem;
-    }
-
+    h1 { font-size: 2.5rem; }
+    .outro-title { left: calc(50% + 4rem); }
+    .card { width: 75%; }
+    .card h1 { font-size: 2.5rem; }
     .intro-title .char,
-    .outro-title .char {
-        margin-top: 0.5rem;
+    .outro-title .char { margin-top: 0.5rem; }
+
+    section { padding: 5rem 1.5rem; }
+
+    nav { padding: 1.25em 1.5em; }
+    .nav-links { display: none; }
+
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
     }
+
+    .project-card {
+        grid-template-columns: 3.5rem 1fr;
+        gap: 1rem;
+    }
+
+    .project-links {
+        grid-column: 2;
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .exp-header {
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+
+    .exp-date { display: none; }
+
+    .contact { padding: 6rem 1.5rem; }
+    footer { padding: 2em 1.5rem; }
 }
